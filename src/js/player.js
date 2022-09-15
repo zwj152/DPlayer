@@ -636,20 +636,19 @@ class DPlayer {
         });
     }
 
-    notice(text, time = 2000, opacity = 0.8) {
+    notice(text, time = 2500, opacity = 0.8) {
         const notice = Template.NewNotice(text, opacity);
-
         this.template.noticeList.appendChild(notice);
         this.events.trigger('notice_show', notice);
-
+        const hasChildren = this.template.noticeList.childNodes.length >= 2;
+        if (hasChildren) {
+            this.template.noticeList.removeChild(this.template.noticeList.childNodes[0]);
+        }
         if (time > 0) {
             setTimeout(
                 (function (e, dp) {
                     return () => {
-                        e.addEventListener('animationend', () => {
-                            dp.template.noticeList.removeChild(e);
-                        });
-                        e.classList.add('remove-notice');
+                        dp.template.noticeList.innerHTML = "";
                         dp.events.trigger('notice_hide');
                     };
                 })(notice, this),
