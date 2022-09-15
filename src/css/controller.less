@@ -13,7 +13,7 @@
     left: 0;
     right: 0;
     height: 41px;
-    padding: 0 20px;
+    padding: 0 10px;
     user-select: none;
     transition: all 0.3s ease;
     &.dplayer-controller-comment {
@@ -29,8 +29,8 @@
         cursor: pointer;
         position: absolute;
         bottom: 33px;
-        width: calc(100% - 40px);
-        height: 3px;
+        width: calc(100% - 20px);
+        height: 4px;
         &:hover {
             .dplayer-bar .dplayer-played .dplayer-thumb {
                 transform: scale(1);
@@ -115,9 +115,10 @@
         }
         .dplayer-bar {
             position: relative;
-            height: 3px;
+            height: 4px;
             width: 100%;
             background: rgba(255, 255, 255, .2);
+            border-radius: 4px;
             cursor: pointer;
             .dplayer-loaded {
                 position: absolute;
@@ -125,17 +126,19 @@
                 top: 0;
                 bottom: 0;
                 background: rgba(255, 255, 255, .4);
-                height: 3px;
+                height: 4px;
                 transition: all 0.5s ease;
                 will-change: width;
+                border-radius: 4px;
             }
             .dplayer-played {
                 position: absolute;
                 left: 0;
                 top: 0;
                 bottom: 0;
-                height: 3px;
+                height: 4px;
                 will-change: width;
+                border-radius: 4px;
                 .dplayer-thumb {
                     position: absolute;
                     top: 0;
@@ -291,7 +294,8 @@
         &.dplayer-icons-right {
             right: 20px;
             .dplayer-icon {
-                padding: 8px;
+                line-height: 38px;
+                padding: 0 6px;
             }
         }
         .dplayer-time,
@@ -313,13 +317,12 @@
             border-radius: 6px;
         }
         .dplayer-icon {
-            width: 40px;
             height: 100%;
             border: none;
             background-color: transparent;
             outline: none;
             cursor: pointer;
-            vertical-align: middle;
+            vertical-align: top;
             box-sizing: border-box;
             display: inline-block;
             .dplayer-icon-content {
@@ -346,6 +349,37 @@
             &.dplayer-volume-icon {
                 width: 43px;
             }
+        }
+       .dplayer-speed{
+            position: relative;
+            z-index: 2;
+            .dplayer-speed-panel{
+
+                .dplayer-speed-item{
+                    text-align: center;
+                    &:hover{
+                        background-color: hsla(0,0%,100%,.1);
+                    }
+                }
+            }
+       }
+       .dplayer-box-Mantle{
+            position: absolute;
+            bottom: 26px;
+            background-color: rgba(21,21,21,.9);
+            width: 70px;
+            left: 50%; 
+            transform: translateX(-50%);
+            border-radius: 2px;
+            display: none;
+            .select-label{
+                color: #00a1d6;
+            }
+       }
+
+        .dplayer-setting-btn{
+            font-size: 14px;
+            color: #fff;
         }
         .dplayer-volume {
             position: relative;

@@ -110,6 +110,25 @@
             </div>
         </div>
         {{ /if }}
+        <div class="dplayer-icon dplayer-speed">
+            <div class="dplayer-setting-btn">倍速</div>
+            <div class="dplayer-box-Mantle">
+                 <div class="dplayer-speed-panel">
+                    {{ each options.playbackSpeed }}
+                        <div class="dplayer-speed-item" data-speed="{{ $value }}">
+                            {{if options.speed == $value }}
+                            <span class="dplayer-label select-label">{{ $value}}x</span>
+                            {{else}}
+                            <span class="dplayer-label">{{ $value}}x</span>
+                            {{/if}}
+                        </div>
+                    {{ /each }}
+                </div>
+            </div>
+        </div>
+        <div class="dplayer-icon">
+            <div class="dplayer-setting-btn">字幕</div>
+        </div>
         {{ if options.screenshot }}
         <div class="dplayer-icon dplayer-camera-icon" data-balloon="{{ tran('screenshot') }}" data-balloon-pos="up">
             <span class="dplayer-icon-content">{{@ icons.camera }}</span>

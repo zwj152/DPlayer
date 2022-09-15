@@ -25,6 +25,7 @@ class Controller {
         this.initFullButton();
         this.initQualityButton();
         this.initScreenshotButton();
+        this.initPlaySpeed();
         // if subtitle url not array, not init old single subtitle button
         if (this.player.options.subtitle) {
             if (typeof this.player.options.subtitle.url === 'string') {
@@ -378,6 +379,48 @@ class Controller {
         this.player.template.subtitleButton.addEventListener('click', () => {
             this.player.subtitle.toggle();
         });
+    }
+
+    initPlaySpeed() {
+        const showMantle =  this.player.template.speedBtn.querySelector('.dplayer-box-Mantle');
+
+        this.player.template.speedBtn.addEventListener('mouseenter', () => {
+            this.player.template.speedBtn.style = 'padding-top: 20px; margin-top: -20px;';
+            showMantle.style = 'display: block';
+        });
+
+        this.player.template.speedBtn.addEventListener('mouseleave', () => {
+            this.player.template.speedBtn.style = 'padding-top: 0px; margin-top: 0px;';
+            showMantle.style = 'display: none';
+        });
+
+
+        let cacheSpeed;
+        let isFirstSpeed = true;
+        for (let i = 0; i < this.player.template.speedItem.length; i++) {
+            const hasS = this.player.template.speedItem[i].firstElementChild.classList.contains('select-label');
+            if (hasS) {
+                cacheSpeed = this.player.template.speedItem[i].firstElementChild;
+            }
+
+            this.player.template.speedItem[i].addEventListener('click', (e) => {
+                const speed = this.player.template.speedItem[i].dataset.speed;
+                if (this.player.options.speed !== speed) {
+                    e.target.classList.add('select-label');
+                    if (isFirstSpeed) {
+                        cacheSpeed.classList.remove('select-label');
+                    } else {
+                        cacheSpeed.target.classList.remove('select-label');
+                    }
+                    isFirstSpeed = false;
+                    cacheSpeed = e;
+                    this.player.speed(speed);
+                    this.player.options.speed = speed;
+                }
+                this.player.template.speedBtn.style = 'padding-top: 0px; margin-top: 0px;';
+                showMantle.style = 'display: none';
+            });
+        }
     }
 
     setAutoHide() {
